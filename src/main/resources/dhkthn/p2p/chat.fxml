@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dhkthn.p2p.controller.ChatController"
+            prefWidth="1000" prefHeight="600">
+
+    <children>
+        <HBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+            <!-- LEFT MENU -->
+            <VBox prefWidth="60" styleClass="left-menu">
+                <children>
+                    <Pane VBox.vgrow="ALWAYS" />
+                    <Button text="Thoát" styleClass="exit-btn" />
+                </children>
+            </VBox>
+
+            <!-- USER LIST -->
+            <VBox prefWidth="250" styleClass="user-list-pane">
+                <children>
+
+                    <Label text="Chat App" styleClass="app-title">
+                        <padding>
+                            <Insets top="15" left="15" bottom="10"/>
+                        </padding>
+                    </Label>
+
+                    <HBox prefHeight="40" spacing="5">
+                        <padding>
+                            <Insets top="5" bottom="5" left="5" right="5"/>
+                        </padding>
+                        <children>
+                            <TextField promptText="Tìm kiếm..." HBox.hgrow="ALWAYS"/>
+                            <Button text="🔍" styleClass="icon-btn" />
+                        </children>
+                    </HBox>
+
+                    <Separator />
+
+                    <Label text="Đoạn chat" styleClass="section-title">
+                        <padding>
+                            <Insets top="10" left="15" bottom="5"/>
+                        </padding>
+                    </Label>
+
+                    <ListView fx:id="userListView"
+                              prefWidth="240" VBox.vgrow="ALWAYS"
+                              styleClass="user-list"/>
+                </children>
+            </VBox>
+
+            <!-- CHAT AREA -->
+            <BorderPane fx:id="chatBorderPane" styleClass="chat-area" HBox.hgrow="ALWAYS">
+
+                <!-- TOP BAR -->
+                <top>
+                    <HBox prefHeight="60" spacing="10" styleClass="chat-header">
+                        <padding>
+                            <Insets left="15" right="15"/>
+                        </padding>
+                        <children>
+                            <VBox alignment="CENTER_LEFT">
+                                <children>
+                                    <Label fx:id="chatName" text="Tên người nhận"
+                                           styleClass="chat-name"/>
+                                    <Label fx:id="chatStatus" text="Đang hoạt động"
+                                           styleClass="chat-status"/>
+                                </children>
+                            </VBox>
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Button fx:id="infoButton" text="ⓘ" styleClass="info-btn"/>
+                        </children>
+                    </HBox>
+                </top>
+
+                <!-- MESSAGE LIST -->
+                <center>
+                    <ScrollPane fx:id="chatScrollPane"
+                                fitToWidth="true"
+                                styleClass="chat-scroll">
+                        <content>
+                            <VBox fx:id="messageContainer" spacing="10"
+                                  styleClass="message-container">
+                                <padding>
+                                    <Insets top="10" left="10" right="10" bottom="10"/>
+                                </padding>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </center>
+
+                <!-- INPUT AREA -->
+                <bottom>
+                    <HBox spacing="10" alignment="CENTER_LEFT"
+                          styleClass="input-bar">
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+                        <children>
+                            <Button text="😊" styleClass="icon-btn"/>
+                            <Button text="📎" styleClass="icon-btn"/>
+                            <TextField fx:id="messageInput"
+                                       promptText="Nhập tin nhắn..."
+                                       HBox.hgrow="ALWAYS"
+                                       onKeyPressed="#handleKeyPressed"/>
+                            <Button text="Gửi" styleClass="send-btn"
+                                    onAction="#onSendMessage"/>
+                        </children>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+
+            <!-- INFO PANEL -->
+            <VBox fx:id="infoPane" prefWidth="190"
+                  managed="false" styleClass="info-pane">
+                <children>
+
+                    <Label text="Thông tin" styleClass="info-title">
+                        <padding>
+                            <Insets top="20" left="15" bottom="15"/>
+                        </padding>
+                    </Label>
+
+                    <Separator/>
+
+                    <VBox spacing="15">
+                        <padding>
+                            <Insets top="15" left="15" right="15"/>
+                        </padding>
+                        <children>
+                            <VBox>
+                                <children>
+                                    <Label text="Thành viên" styleClass="info-section"/>
+                                    <Label text="• Tên người nhận" styleClass="info-item"/>
+                                </children>
+                            </VBox>
+
+                            <VBox>
+                                <children>
+                                    <Label text="Tùy chọn" styleClass="info-section"/>
+                                    <Button text="Tìm kiếm tin nhắn" styleClass="info-link"/>
+                                    <Button text="Tùy chỉnh đoạn chat" styleClass="info-link"/>
+                                </children>
+                            </VBox>
+                        </children>
+                    </VBox>
+
+                </children>
+            </VBox>
+
+        </HBox>
+    </children>
+</AnchorPane>
