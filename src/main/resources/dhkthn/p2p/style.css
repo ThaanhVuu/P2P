@@ -53,7 +53,7 @@
 }
 
 .user-list {
-    -fx-background-color: transparent;
+    -fx-background-color: #ffffff transparent;
     -fx-border-width: 0;
 }
 
@@ -235,6 +235,7 @@
 }
 
 .icon-btn {
+    -fx-font-family: "Segoe UI Emoji";
     -fx-background-color: #f0f2f5;
     -fx-text-fill: #666;
     -fx-font-size: 16px;

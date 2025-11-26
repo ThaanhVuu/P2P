@@ -12,6 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.animation.TranslateTransition;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -292,5 +294,16 @@ public class ChatController {
         System.out.println("💾 Lịch sử chat đã được lưu tự động");
         
         System.out.println("🛑 Ứng dụng đã tắt hoàn toàn");
+    }
+
+    @FXML
+    protected void chooseFile(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a file");
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            String path = file.getAbsolutePath();
+            System.out.println("File path: " + path);
+        }
     }
 }

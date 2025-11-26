@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+
+<?import java.lang.String?>
+<!--suppress JavaFxUnresolvedStyleClassReference -->
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="dhkthn.p2p.controller.SignInController"
+           styleClass="bg-light"
+>
+
+    <VBox alignment="CENTER" spacing="30" maxWidth="450" maxHeight="550">
+        <styleClass>
+            <String fx:value="bg-white"/>
+            <String fx:value="border"/>
+            <String fx:value="border-primary"/>
+            <String fx:value="rounded"/>
+            <String fx:value="shadow"/>
+        </styleClass>
+
+        <padding>
+            <Insets top="50" right="50" bottom="50" left="50"/>
+        </padding>
+
+        <!-- Header -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="Login" styleClass="h2, text-primary, fw-bold"/>
+            <Label text="Welcome back!" styleClass="text-muted"/>
+        </VBox>
+
+        <!-- Form Fields -->
+        <VBox spacing="20">
+            <MFXTextField fx:id="usernameField"
+                          floatMode="BORDER"
+                          floatingText="Username"
+                          prefHeight="45"
+                          prefWidth="400"
+            />
+            <MFXPasswordField fx:id="passwordField"
+                              floatMode="BORDER"
+                              floatingText="Password"
+                              prefHeight="45"
+                              prefWidth="400"
+            />
+
+            <!-- Remember & Forgot -->
+            <!--            <HBox alignment="CENTER_LEFT" spacing="10">-->
+            <!--                <Region HBox.hgrow="ALWAYS"/>-->
+            <!--                <Label text="Forgot password?"-->
+            <!--                       styleClass="text-primary, cursor-pointer"-->
+            <!--                />-->
+            <!--            </HBox>-->
+        </VBox>
+
+        <!-- Buttons -->
+        <VBox spacing="15">
+            <MFXButton
+                    text="Sign in"
+                    onAction="#handleSignInButton"
+                    prefWidth="350"
+                    prefHeight="45"
+                    styleClass="outline-button"
+                    style="-fx-background-color: #2b77ba; -fx-text-fill: white"
+            />
+
+            <HBox alignment="CENTER" spacing="5">
+                <Label text="Don't have an account yet?" styleClass="text-muted"/>
+                <Label text="Sign up now"
+                       onMouseClicked="#handleSignUpClicked"
+                       styleClass="text-primary, fw-bold, cursor-pointer"
+                />
+            </HBox>
+        </VBox>
+    </VBox>
+</StackPane>

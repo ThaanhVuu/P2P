@@ -13,8 +13,6 @@ repositories {
     mavenCentral()
 }
 
-val junitVersion = "5.12.1"
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -36,21 +34,14 @@ javafx {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation("com.google.code.gson:gson:2.13.2")
-    
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
+    implementation("io.github.palexdev:materialfx:11.17.0")
+    implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
 
-jlink {
-    imageZip.set(layout.buildDirectory.file("/distributions/app-${javafx.platform.classifier}.zip"))
-    options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
-    launcher {
-        name = "app"
-    }
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
+
+    testCompileOnly("org.projectlombok:lombok:1.18.42")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
 }
