@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AppConfig {
     @Getter
@@ -16,6 +18,9 @@ public class AppConfig {
 
     @Getter @Setter
     private static User user;
+
+    @Getter
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     public static String hashPassword(String password) {
         try {

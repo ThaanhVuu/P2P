@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 
-interface IPeer{
+public interface IPeer{
     void start();
     void stop();
     boolean isRunning();

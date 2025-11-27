@@ -66,7 +66,7 @@ public class Main extends Application {
                 .setResolveAssets(true)
                 .build()
                 .setGlobal();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("chat.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sign-in.fxml"));
 
         scene = new Scene(loader.load(), 1000, 600);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());

@@ -1,5 +1,8 @@
 package dhkthn.p2p.controller;
 
+import dhkthn.p2p.config.AppConfig;
+import dhkthn.p2p.model.IPeer;
+import dhkthn.p2p.model.Peer;
 import dhkthn.p2p.model.message.ChatMessage;
 import dhkthn.p2p.service.message.ChatHistoryService;
 import dhkthn.p2p.service.message.MessageServer;
@@ -17,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.net.*;
 import java.io.*;
@@ -48,9 +53,8 @@ public class ChatController {
     private int myPort = 12345; // UserB port
 
     @FXML
-    public void initialize() {
+    public void initialize(IPeer iPeer) {
         System.out.println("🎬 Khởi tạo ChatController...");
-        
         // 🆕 KHỞI TẠO SERVICE LỊCH SỬ
         chatHistoryService = new ChatHistoryService();
         
@@ -294,16 +298,5 @@ public class ChatController {
         System.out.println("💾 Lịch sử chat đã được lưu tự động");
         
         System.out.println("🛑 Ứng dụng đã tắt hoàn toàn");
-    }
-
-    @FXML
-    protected void chooseFile(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a file");
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            String path = file.getAbsolutePath();
-            System.out.println("File path: " + path);
-        }
     }
 }

@@ -1,12 +1,15 @@
 package dhkthn.p2p.model;
 
 import dhkthn.p2p.config.AppConfig;
+import lombok.*;
 
 import java.io.*;
 import java.net.*;
 import java.util.Enumeration;
 import java.util.concurrent.ExecutorService;
 
+@SuppressWarnings("ALL")
+@Builder @NoArgsConstructor @AllArgsConstructor @Getter @Setter
 public class Peer implements IPeer {
     private String name;
     private int port;
@@ -14,16 +17,6 @@ public class Peer implements IPeer {
     private volatile boolean running = false;
 
     private transient ServerSocket serverSocket;
-
-    public Peer() {
-    }
-
-    public Peer(String name, int port, ExecutorService pool, boolean running) {
-        this.name = name;
-        this.port = port;
-        this.pool = pool;
-        this.running = running;
-    }
 
     @Override
     public String getMyIp(){
