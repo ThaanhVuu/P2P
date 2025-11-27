@@ -25,7 +25,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("dhkthn.p2p")
-    mainClass.set("dhkthn.p2p.HelloApplication")
+    mainClass.set("dhkthn.p2p.Main")
 }
 
 javafx {

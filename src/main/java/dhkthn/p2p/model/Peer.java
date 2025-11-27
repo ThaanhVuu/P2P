@@ -14,6 +14,7 @@ public class Peer implements IPeer {
     private String name;
     private int port;
     private ExecutorService pool;
+    @Builder.Default
     private volatile boolean running = false;
 
     private transient ServerSocket serverSocket;
