@@ -23,7 +23,7 @@ public class PeerDiscovery extends Peer implements IPeerDiscover {
     private final DatagramSocket clientSocket;
 
     public PeerDiscovery() throws SocketException{
-            this.clientSocket = new DatagramSocket(); // bind vào port ngẫu nhiên, dùng cho broadcast + scan
+            this.clientSocket = new DatagramSocket(AppConfig.getDISCOVERY_PORT()); // bind vào port ngẫu nhiên, dùng cho broadcast + scan
             this.clientSocket.setBroadcast(true);
             this.clientSocket.setSoTimeout(AppConfig.getTIME_OUT());
     }
@@ -32,12 +32,12 @@ public class PeerDiscovery extends Peer implements IPeerDiscover {
      * Mở socket UDP cho phép nhiều process cùng bind vào cùng 1 port (SO_REUSEADDR),
      * dùng làm socket listener trên DISCOVERY_PORT.
      */
-    private DatagramSocket openSharedSocket(int port) throws IOException {
-        DatagramChannel channel = DatagramChannel.open();
-        channel.setOption(StandardSocketOptions.SO_REUSEADDR, true);
-        channel.bind(new InetSocketAddress(port));
-        return channel.socket();
-    }
+//    private DatagramSocket openSharedSocket(int port) throws IOException {
+//        DatagramChannel channel = DatagramChannel.open();
+//        channel.setOption(StandardSocketOptions.SO_REUSEADDR, true);
+//        channel.bind(new InetSocketAddress(port));
+//        return channel.socket();
+//    }
 
     /**
      * 1) LISTENING:
@@ -46,7 +46,7 @@ public class PeerDiscovery extends Peer implements IPeerDiscover {
      */
     @Override
     public void listening() throws IOException {
-        DatagramSocket socket = openSharedSocket(AppConfig.getDISCOVERY_PORT());
+        DatagramSocket socket = new DatagramSocket();
         socket.setBroadcast(true);
         byte[] buffer = new byte[1024];
 

@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
 import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.concurrent.ExecutorService;
@@ -25,9 +27,22 @@ public class AppConfig {
     private static final int DISCOVERY_PORT = 8888;
 
     @Getter
-    private static final int TIME_OUT = 5000;
+    private static final int TIME_OUT = 2000;
 
     public static InetAddress getBroadcastAddress() throws IOException {
+        InetAddress local = InetAddress.getLocalHost();
+        NetworkInterface ni = NetworkInterface.getByInetAddress(local);
+        if (ni != null) {
+            for (InterfaceAddress ia : ni.getInterfaceAddresses()) {
+                InetAddress broadcast = ia.getBroadcast();
+                if (broadcast != null) {
+                    // debug cho chắc
+                    System.out.println("[DISCOVERY] Using broadcast: " + broadcast.getHostAddress());
+                    return broadcast;
+                }
+            }
+        }
+        // fallback nếu không tìm được
         return InetAddress.getByName("255.255.255.255");
     }
 
