@@ -28,10 +28,10 @@ public class PeerDiscovery extends Peer implements IPeerDiscover {
             this.clientSocket.setSoTimeout(AppConfig.getTIME_OUT());
     }
 
-    /**
-     * Mở socket UDP cho phép nhiều process cùng bind vào cùng 1 port (SO_REUSEADDR),
-     * dùng làm socket listener trên DISCOVERY_PORT.
-     */
+//    /**
+//     * Mở socket UDP cho phép nhiều process cùng bind vào cùng 1 port (SO_REUSEADDR),
+//     * dùng làm socket listener trên DISCOVERY_PORT.
+//     */
 //    private DatagramSocket openSharedSocket(int port) throws IOException {
 //        DatagramChannel channel = DatagramChannel.open();
 //        channel.setOption(StandardSocketOptions.SO_REUSEADDR, true);
